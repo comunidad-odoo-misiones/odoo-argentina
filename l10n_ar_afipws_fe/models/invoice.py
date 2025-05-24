@@ -389,6 +389,8 @@ print "Observaciones:", wscdc.Obs
             pos_number = journal.point_of_sale_number
             doc_afip_code = inv.document_type_id.code
 
+            condicion_iva_receptor_id = commercial_partner.afip_responsability_type_id.code
+
             # authenticate against AFIP:
             ws = inv.company_id.get_connection(afip_ws).connect()
 
@@ -472,7 +474,9 @@ print "Observaciones:", wscdc.Obs
                     imp_iva,
                     imp_trib, imp_op_ex, fecha_cbte, fecha_venc_pago,
                     fecha_serv_desde, fecha_serv_hasta,
-                    moneda_id, moneda_ctz
+                    moneda_id, moneda_ctz, 
+                    cancela_misma_moneda_ext='N', 
+                    condicion_iva_receptor_id=condicion_iva_receptor_id
                 )
             # elif afip_ws == 'wsmtxca':
             #     obs_generales = inv.comment
